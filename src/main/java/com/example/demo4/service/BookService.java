@@ -1,13 +1,16 @@
 package com.example.demo4.service;
 
-import org.springframework.stereotype.Service;
 import com.example.demo4.model.Book;
-import java.util.List;
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class BookService {
-    private List<Book> books = new ArrayList<>();
+
+    private final List<Book> books = new ArrayList<>();
+    private int nextId = 1;
 
     public List<Book> getAllBooks() {
         return books;
@@ -21,12 +24,13 @@ public class BookService {
     }
 
     public void addBook(Book book) {
+        book.setId(nextId++);
         books.add(book);
     }
 
-    public void updateBook(int id, Book updatedBook) {
+    public void updateBook(Book updatedBook) {
         books.stream()
-                .filter(book -> book.getId() == id)
+                .filter(book -> book.getId() == updatedBook.getId())
                 .findFirst()
                 .ifPresent(book -> {
                     book.setTitle(updatedBook.getTitle());

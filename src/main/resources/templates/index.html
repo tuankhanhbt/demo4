@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+
+</head>
+<body>
+<div class="container">
+    <h1>Xin chào Thymeleaf</h1>
+    <!-- message từ controller -->
+    <p th:text="${message}">Default message</p>
+    <p th:text="*{name}" th:object="${student}">Tên sinh viên</p>
+    <p th:text="*{id}" th:object="${student}">Tên sinh viên</p>
+</div>
+</body>
+</html>
